@@ -3,8 +3,9 @@ import "./App.css";
 import Nav from "./Nav";
 import Shop from "./Shop";
 import About from "./About";
+import CatDetail from "./CatDetail";
 
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
     return (
@@ -13,7 +14,8 @@ function App() {
                 <Nav></Nav>
                 <Switch>
                     <Route exact path="/" component={Home} />
-                    <Route path="/Shop" component={Shop} />
+                    <Route exact path="/Shop" component={Shop} />
+                    <Route path="/Shop/:id" component={CatDetail} />
                     <Route path="/About" component={About} />
                 </Switch>
             </Router>
@@ -22,10 +24,6 @@ function App() {
 }
 
 function Home() {
-    const navlinkstyle = {
-        color: "white",
-        textDecoration: "none",
-    };
     return (
         <div>
             <h1>Home Page</h1>
