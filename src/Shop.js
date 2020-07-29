@@ -12,7 +12,7 @@ function Shop() {
     const fetchItems = async () => {
         const data = await fetch("https://cat-fact.herokuapp.com/facts/");
         const cats = await data.json();
-        setcats(cats.all);
+        setcats(cats.all.filter((c) => c.user && c.user.name));
     };
 
     const linkstyle = {
@@ -25,17 +25,25 @@ function Shop() {
             <hr />
 
             {cats.map((cat) => (
-                <div key={cat._id}>
-                    <strong>Id: </strong>{" "}
-                    <Link to={`/Shop/${cat._id}`} style={linkstyle}>
-                        {cat._id}
-                    </Link>
-                    <br />
-                    <strong>Text: </strong> {cat.text}
-                    <br />
-                    <strong>Upvotes: </strong> {cat.upvotes}
+                <>
+                    <div
+                        key={cat._id}
+                        style={{ textAlign: "left", paddingLeft: "20%" }}
+                    >
+                        <strong>Id: </strong>{" "}
+                        <Link to={`/Shop/${cat._id}`} style={linkstyle}>
+                            {cat._id}
+                        </Link>
+                        <br />
+                        <strong>Text: </strong> {cat.text}
+                        <br />
+                        <strong>Upvotes: </strong> {cat.upvotes}
+                        <br></br>
+                        <strong>UserName: </strong>
+                        {`${cat.user.name.first} ${cat.user.name.last}`}
+                    </div>
                     <hr />
-                </div>
+                </>
             ))}
         </div>
     );
