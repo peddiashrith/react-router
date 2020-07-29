@@ -3,20 +3,19 @@ import { useState, useEffect } from "react";
 
 function CatDetail({ match }) {
     useEffect(() => {
+        const fetchCat = async () => {
+            const data = await fetch(
+                `https://cat-fact.herokuapp.com/facts/${match.params.id}`
+            );
+            const cat = await data.json();
+            setcat(cat);
+        };
         fetchCat();
-    }, []);
+    }, [match.params.id]);
 
     const [cat, setcat] = useState({
         status: {},
     });
-
-    const fetchCat = async () => {
-        const data = await fetch(
-            `https://cat-fact.herokuapp.com/facts/${match.params.id}`
-        );
-        const cat = await data.json();
-        setcat(cat);
-    };
 
     return (
         <div>

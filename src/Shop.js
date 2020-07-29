@@ -7,13 +7,7 @@ function Shop() {
         fetchItems();
     }, []);
 
-    const [cats, setcats] = useState([
-        {
-            user: {
-                name: {},
-            },
-        },
-    ]);
+    const [cats, setcats] = useState([]);
 
     const fetchItems = async () => {
         const data = await fetch("https://cat-fact.herokuapp.com/facts/");
@@ -32,14 +26,15 @@ function Shop() {
 
             {cats.map((cat) => (
                 <div key={cat._id}>
-                    <strong>Id:</strong>{" "}
+                    <strong>Id: </strong>{" "}
                     <Link to={`/Shop/${cat._id}`} style={linkstyle}>
                         {cat._id}
                     </Link>
                     <br />
-                    <strong>Text:</strong> {cat.text}
-                    <strong>User:</strong> {cat.user.name.first}
-                    <hr></hr>
+                    <strong>Text: </strong> {cat.text}
+                    <br />
+                    <strong>Upvotes: </strong> {cat.upvotes}
+                    <hr />
                 </div>
             ))}
         </div>
