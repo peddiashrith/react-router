@@ -4,7 +4,7 @@ import Nav from "./Nav";
 import Shop from "./Shop";
 import About from "./About";
 
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 function App() {
     return (
@@ -22,6 +22,10 @@ function App() {
 }
 
 function Home() {
+    const navlinkstyle = {
+        color: "white",
+        textDecoration: "none",
+    };
     return (
         <div>
             <h1>Home Page</h1>
